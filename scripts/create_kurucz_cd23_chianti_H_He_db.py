@@ -1,11 +1,16 @@
 """ Example script to create a database """
 
 from carsus import init_db
-from carsus.io.nist import NISTWeightsCompIngester, NISTIonizationEnergiesIngester
+from carsus.io.nist import (
+        NISTWeightsCompIngester,
+        NISTIonizationEnergiesIngester
+        )
 from carsus.io.kurucz import GFALLIngester
 from carsus.io.chianti_ import ChiantiIngester
+from carsus.io.zeta import KnoxLongZetaIngester
 
-def create_test_db(db_fname, gfall_fname):
+
+def create_test_db(db_fname, gfall_fname, zeta_fname):
     """
     Create a database
 
@@ -26,8 +31,14 @@ def create_test_db(db_fname, gfall_fname):
     session.commit()
 
     # Ingest ionization energies
-    ioniz_energies_ingester = NISTIonizationEnergiesIngester(session, spectra="h-zn")
-    ioniz_energies_ingester.ingest(ionization_energies=True, ground_levels=True)
+    ioniz_energies_ingester = NISTIonizationEnergiesIngester(
+            session,
+            spectra="h-zn"
+            )
+    ioniz_energies_ingester.ingest(
+            ionization_energies=True,
+            ground_levels=True
+            )
     session.commit()
 
     # Ingest kurucz levels and lines
@@ -41,10 +52,18 @@ def create_test_db(db_fname, gfall_fname):
     chianti_ingester.ingest(levels=True, lines=True, collisions=True)
     session.commit()
 
+    zeta_ingester = KnoxLongZetaIngester(session, zeta_fname)
+    zeta_ingester.ingest()
+
     session.close()
 
 
 if __name__ == "__main__":
     db_fname = "path/to/empty.db"  # Provide the path to the database
     gfall_fname = "path/to/gfall.dat"  # Provide the path to the gfall file
-    create_test_db(db_fname=db_fname, gfall_fname=gfall_fname)
+    zeta_fname = "path/to/zeta.dat"  # Provide the path to the zeta file
+    create_test_db(
+            db_fname=db_fname,
+            gfall_fname=gfall_fname,
+            zeta_fname=zeta_fname
+            )
