@@ -6,7 +6,7 @@ from carsus.model import DataSource
 
 
 # Name of the database file to export
-dbname = "../databases/kurucz_cd23_chianti_all.db"
+dbname = "sqlite:///../databases/kurucz_cd23_chianti_all.db"
 
 # Name of the output file
 storename = "../hdfstores/kurucz_cd23_chianti_H_He.h5"

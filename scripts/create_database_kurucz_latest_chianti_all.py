@@ -9,7 +9,7 @@ from create_database import (
 
 if __name__ == "__main__":
     # Provide the path to the database
-    db_fname = "../databases/kurucz_latest_chianti_all.db"
+    db_fname = "sqlite:///../databases/kurucz_latest_chianti_all.db"
 
     # Provide the path to the zeta file
     zeta_fname = "../zeta/knox_long_recombination_zeta.dat"
