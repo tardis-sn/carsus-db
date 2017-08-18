@@ -24,6 +24,6 @@ if __name__ == "__main__":
 
     add_kurucz(session, gfall_fname)
 
-    add_chianti(session)
+    add_chianti(session, ions='H-Zn')
 
     session.close()
