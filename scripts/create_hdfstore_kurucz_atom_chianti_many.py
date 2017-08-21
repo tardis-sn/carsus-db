@@ -9,7 +9,7 @@ from carsus.model import DataSource
 dbname = "sqlite:///../databases/kurucz_cd23_chianti_all.db"
 
 # Name of the output file
-storename = "../hdfstores/kurucz_cd23_chianti_H_He.h5"
+storename = "../hdfstores/kurucz_atom_chianti_many.h5"
 
 chianti_ions = 'H-He; Si II; Ca II; Mg II; S II'
 
